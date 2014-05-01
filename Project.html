@@ -12,6 +12,7 @@
 	}
 	.error{
 		color:red;
+		display: inline;
 	}
 	</style>
 
@@ -52,27 +53,47 @@ $(function(){  //所有代码放到这个block里面来，这样页面加载好�
 		return false; //让表单不提交，而是执行上面的代码。
 	}
 
-	var price_rule = {
+	var main_rule = {
 		required: true,
 		number: true,
 		min: 0
 	};
 
-	var price_message = {
+	var main_message = {
 		required: 'needed',
 		number: 'number',
 		min: 'This should be positive'
 	};
 
+	var dec_rule = {
+		required: true,
+		number: true,
+		range: [0, 1]
+	};
+
+	var dec_message = {
+		required: 'needed',
+		number: 'number',
+		range: 'This should between 0 and 1'
+	};
+
 	var BS_euro_option = {
 		rules:{
-			S: price_rule,
-			K: price_rule
+			S: main_rule,
+			K: main_rule,
+			T: main_rule
+			variance:dec_rule,
+			r:dec_rule,
+			t: main_rule
 		},
 
 		messages:{
-			S: price_message,
-			K: price_message
+			S: main_message,
+			K: main_message,
+			T: main_message,
+			variance: dec_message,
+			r: dec_message,
+			t: main_rule
 		},
 
 		submitHandler: BS_euro 
@@ -117,7 +138,7 @@ $(function(){  //所有代码放到这个block里面来，这样页面加载好�
 
 		<input type='submit' value='calculate' /> <!-- 这个是用来提交的按钮 -->
 		<div>
-			Call option is: <span class='call_result'></span>
+			Call option is: <span class='call_result'></span> &nbsp; &nbsp;
 			Put option is: <span class='put_result'></span>
 		</div>
 	</form>
