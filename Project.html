@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+
+	<style type="text/css">
+	/** 给出错的字段标红 **/
+	.error{
+		color:red;
+	}
+	</style>
+
+
+	<script type="text/javascript" src='./jquery.js'></script>
+	<script type="text/javascript" src='./jquery.validate.js'></script>
+	<script src="util.js"></script>
+	<script src="01_BlackShores.js"></script>
+	<script src="02_geometric.js"></script>
+	<script src="03_standardMC.js"></script>
+	<script src="04_MCcontrol.js"></script>
+	<script src="05_controlBlasket.js"></script>
+	<script src="TestCase.js"></script>
+	<script type="text/javascript">
+
+$(function(){  //所有代码放到这个block里面来，这样页面加载好之后才执行js
+
+
+	var BS_euro = function(e){ //定义点击按钮之后调用的函数
+
+
+		var $form = $('form.BS_European');  //选中表单这个元素
+
+		var $Svalue = $form.find('input[name="S"]');  //name为ning的这个input
+		var S = $Svalue.val();
+		var $Kvalue = $form.find('input[name="K"]');
+		var K = $Kvalue.val();
+		var $Tvalue = $form.find('input[name="T"]');
+		var T = $Tvalue.val();
+		var $varianceValue = $form.find('input[name="variance"]');
+		var variance = $varianceValue.val();
+		var $rValue = $form.find('input[name="r"]');
+		var r = $rValue.val();
+		var $tValue = $form.find('input[name="t"]');
+		var t = $tValue.val();
+
+		var callvalue = R.euro.callOption(S, K, t, T, variance, r);  //获得这个input的值
+		var putvalue = R.euro.putOption(S, K, t, T, variance, r);
+
+		$('span.call_result').text(callvalue);
+		$('span.put_result').text(putvalue);
+
+		return false; //让表单不提交，而是执行上面的代码。
+	}
+
+	$('form.BS_European').validate({ //给class为prac_1的表单，添加防错验证
+		rules:{
+			S: {
+				required: true,
+				number: true,
+				min: 0
+			},
+			K: {
+				required: true,
+				number: true,
+				min: 0
+			}
+		},
+		messages:{
+			S:{
+				required: 'needed',
+				number: 'number',
+				min: 'S should be positive'
+			},
+			K:{
+				required: 'needed',
+				number: 'number',
+				min: 'S should be positive'
+			}
+		},
+		submitHandler: BS_euro  //绑定prac_1表单点击按钮之后的处理函数
+	}); 
+
+})
+
+</script>
+
+
+</head>
+<body>
+
+	<h1>Black-Scholes Formulas for European call/put options.</h1>
+	<form class='BS_European'>
+		<div>
+			<label>The spot price of asset S(0): </label>
+			<input name='S' type='text' value="100"/>
+		</div>
+		<div>
+			<label>Strike price K: </label>
+			<input name='K' type='text' value="100"/>
+		</div>
+		<div>
+			<label>Time to maturity (in years) T: </label>
+			<input name='T' type='text' value="3"/> 
+		</div>
+		<div>
+			<label>The volatility: </label>
+			<input name='variance' type='text' value="0.3"/> 
+		</div>
+		<div>
+			<label>Risk-free interest rate r: </label>
+			<input name='r' type='text' value="0.05"/> 
+		</div>
+		<div>
+			<label>t: </label>
+			<input name='t' type='text' value="0"/> 
+		</div>
+
+		<input type='submit' value='calculate' /> <!-- 这个是用来提交的按钮 -->
+	</form>
+	<div>
+		Call option is: <span class='call_result'></span>
+		Put option is: <span class='put_result'></span>
+	</div>
+</body>
+</html>
