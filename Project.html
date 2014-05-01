@@ -3,14 +3,17 @@
 <head>
 	<meta charset="utf-8">
 
-
 	<style type="text/css">
 	/** 给出错的字段标红 **/
+	label{
+		display: inline-block;
+		width: 12em;
+		text-align: right;
+	}
 	.error{
 		color:red;
 	}
 	</style>
-
 
 	<script type="text/javascript" src='./jquery.js'></script>
 	<script type="text/javascript" src='./jquery.validate.js'></script>
@@ -28,60 +31,54 @@ $(function(){  //所有代码放到这个block里面来，这样页面加载好�
 
 	var BS_euro = function(e){ //定义点击按钮之后调用的函数
 
-
 		var $form = $('form.BS_European');  //选中表单这个元素
+		var get = function(name){
+			return $form.find('input[name="'+name+'"]').val();
+		}
 
-		var $Svalue = $form.find('input[name="S"]');  //name为ning的这个input
-		var S = $Svalue.val();
-		var $Kvalue = $form.find('input[name="K"]');
-		var K = $Kvalue.val();
-		var $Tvalue = $form.find('input[name="T"]');
-		var T = $Tvalue.val();
-		var $varianceValue = $form.find('input[name="variance"]');
-		var variance = $varianceValue.val();
-		var $rValue = $form.find('input[name="r"]');
-		var r = $rValue.val();
-		var $tValue = $form.find('input[name="t"]');
-		var t = $tValue.val();
+		var S = get('S');
+		var K = get('K');
+		var T = get('T');
+		var variance = get('variance');
+		var r = get('r');
+		var t = get('t');
 
 		var callvalue = R.euro.callOption(S, K, t, T, variance, r);  //获得这个input的值
 		var putvalue = R.euro.putOption(S, K, t, T, variance, r);
 
-		$('span.call_result').text(callvalue);
-		$('span.put_result').text(putvalue);
+		$form.find('span.call_result').text(callvalue);
+		$form.find('span.put_result').text(putvalue);
 
 		return false; //让表单不提交，而是执行上面的代码。
 	}
 
-	$('form.BS_European').validate({ //给class为prac_1的表单，添加防错验证
+	var price_rule = {
+		required: true,
+		number: true,
+		min: 0
+	};
+
+	var price_message = {
+		required: 'needed',
+		number: 'number',
+		min: 'This should be positive'
+	};
+
+	var BS_euro_option = {
 		rules:{
-			S: {
-				required: true,
-				number: true,
-				min: 0
-			},
-			K: {
-				required: true,
-				number: true,
-				min: 0
-			}
+			S: price_rule,
+			K: price_rule
 		},
 
-		
 		messages:{
-			S:{
-				required: 'needed',
-				number: 'number',
-				min: 'S should be positive'
-			},
-			K:{
-				required: 'needed',
-				number: 'number',
-				min: 'S should be positive'
-			}
+			S: price_message,
+			K: price_message
 		},
-		submitHandler: BS_euro  //绑定prac_1表单点击按钮之后的处理函数
-	}); 
+
+		submitHandler: BS_euro 
+	};
+
+	$('form.BS_European').validate(BS_euro_option); 
 
 })
 
@@ -119,10 +116,11 @@ $(function(){  //所有代码放到这个block里面来，这样页面加载好�
 		</div>
 
 		<input type='submit' value='calculate' /> <!-- 这个是用来提交的按钮 -->
+		<div>
+			Call option is: <span class='call_result'></span>
+			Put option is: <span class='put_result'></span>
+		</div>
 	</form>
-	<div>
-		Call option is: <span class='call_result'></span>
-		Put option is: <span class='put_result'></span>
-	</div>
+
 </body>
 </html>
