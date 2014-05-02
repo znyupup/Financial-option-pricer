@@ -146,5 +146,298 @@
 		</div>
 	</form>
 
+
+	<h2>Standard Monte Carlo method for arithmetic Asian options.</h2>
+	<form class='arth_Asian_from'>
+		<div>
+			<label>The spot price of asset S(0): </label>
+			<input name='S' type='text' value="100"/>
+		</div>
+		<div>
+			<label>Strike price K: </label>
+			<input name='K' type='text' value="100"/>
+		</div>
+		<div>
+			<label>Time to maturity (in years) T: </label>
+			<input name='T' type='text' value="3"/> 
+		</div>
+		<div>
+			<label>The volatility: </label>
+			<input name='variance' type='text' value="0.3"/> 
+		</div>
+		<div>
+			<label>Risk-free interest rate r: </label>
+			<input name='r' type='text' value="0.05"/> 
+		</div>
+		<div>
+			<label>The number of observation times: </label>
+			<input name='n' type='text' value="50"/> 
+		</div>
+		<div>
+			<label>The number of paths: </label>
+			<input name='m' type='text' value="10000"/> 
+		</div>
+
+		<input type='submit' value='calculate' /> <!-- 这个是用来提交的按钮 -->
+		<div>
+			<div>
+				Call option is: <span class='call_result'></span> 
+				The 95% confidence interval is: <span class='call_interval'></span>
+			</div>
+			<div> 
+				Put option is: <span class='put_result'></span>
+				The 95% confidence interval is: <span class='put_interval'></span>
+			</div>
+		</div>
+	</form>
+
+	<h2>Standard Monte Carlo method for Arithmetic basket option</h2>
+	<form class='arth_basket_from'>
+		<div>
+			<label>The spot price of asset S1(0): </label>
+			<input name='S1' type='text' value="100"/>
+		</div>
+		<div>
+			<label>The spot price of asset S2(0): </label>
+			<input name='S2' type='text' value="100"/>
+		</div>
+		<div>
+			<label>Strike price K: </label>
+			<input name='K' type='text' value="100"/>
+		</div>
+		<div>
+			<label>Time to maturity (in years) T: </label>
+			<input name='T' type='text' value="3"/> 
+		</div>
+		<div>
+			<label>The volatility of asset1: </label>
+			<input name='var1' type='text' value="0.3"/> 
+		</div>
+		<div>
+			<label>The volatility of asset2: </label>
+			<input name='var2' type='text' value="0.3"/> 
+		</div>
+		<div>
+			<label>Risk-free interest rate r: </label>
+			<input name='r' type='text' value="0.05"/> 
+		</div>
+		<div>
+			<label>The correlation: </label>
+			<input name='p' type='text' value="0.5"/> 
+		</div>
+		<div>
+			<label>The number of paths: </label>
+			<input name='m' type='text' value="10000"/> 
+		</div>
+
+		<input type='submit' value='calculate' /> <!-- 这个是用来提交的按钮 -->
+		<div>
+			<div>
+				Call option is: <span class='call_result'></span> 
+				The 95% confidence interval is: <span class='call_interval'></span>
+			</div>
+			<div> 
+				Put option is: <span class='put_result'></span>
+				The 95% confidence interval is: <span class='put_interval'></span>
+			</div>
+		</div>
+	</form>
+
+
+	<h2>Monte Carlo method for arithmetic Asian options. Control variate = Geometric mean Asian.</h2>
+	<form class='control_geo_from'>
+		<div>
+			<label>The spot price of asset S(0): </label>
+			<input name='S' type='text' value="100"/>
+		</div>
+		<div>
+			<label>Strike price K: </label>
+			<input name='K' type='text' value="100"/>
+		</div>
+		<div>
+			<label>Time to maturity (in years) T: </label>
+			<input name='T' type='text' value="3"/> 
+		</div>
+		<div>
+			<label>The volatility: </label>
+			<input name='variance' type='text' value="0.3"/> 
+		</div>
+		<div>
+			<label>Risk-free interest rate r: </label>
+			<input name='r' type='text' value="0.05"/> 
+		</div>
+		<div>
+			<label>The number of observation times: </label>
+			<input name='n' type='text' value="50"/> 
+		</div>
+		<div>
+			<label>The number of paths: </label>
+			<input name='m' type='text' value="10000"/> 
+		</div>
+
+		<input type='submit' value='calculate' /> <!-- 这个是用来提交的按钮 -->
+		<div>
+			<div>
+				Call option is: <span class='call_result'></span> 
+				The 95% confidence interval is: <span class='call_interval'></span>
+			</div>
+			<div> 
+				Put option is: <span class='put_result'></span>
+				The 95% confidence interval is: <span class='put_interval'></span>
+			</div>
+		</div>
+	</form>
+
+	<h2>Monte Carlo method for arithmetic Asian options. Control variate = Geometric mean Asian with adjusted strike.</h2>
+	<form class='control_geoAS_from'>
+		<div>
+			<label>The spot price of asset S(0): </label>
+			<input name='S' type='text' value="100"/>
+		</div>
+		<div>
+			<label>Strike price K: </label>
+			<input name='K' type='text' value="100"/>
+		</div>
+		<div>
+			<label>Time to maturity (in years) T: </label>
+			<input name='T' type='text' value="3"/> 
+		</div>
+		<div>
+			<label>The volatility: </label>
+			<input name='variance' type='text' value="0.3"/> 
+		</div>
+		<div>
+			<label>Risk-free interest rate r: </label>
+			<input name='r' type='text' value="0.05"/> 
+		</div>
+		<div>
+			<label>The number of observation times: </label>
+			<input name='n' type='text' value="50"/> 
+		</div>
+		<div>
+			<label>The number of paths: </label>
+			<input name='m' type='text' value="10000"/> 
+		</div>
+
+		<input type='submit' value='calculate' /> <!-- 这个是用来提交的按钮 -->
+		<div>
+			<div>
+				Call option is: <span class='call_result'></span> 
+				The 95% confidence interval is: <span class='call_interval'></span>
+			</div>
+			<div> 
+				Put option is: <span class='put_result'></span>
+				The 95% confidence interval is: <span class='put_interval'></span>
+			</div>
+		</div>
+	</form>
+
+	<h2>Monte Carlo method for arithmetic basket option. Control variate = Geometric mean Asian.</h2>
+	<form class='control_basket_from'>
+		<div>
+			<label>The spot price of asset S1(0): </label>
+			<input name='S1' type='text' value="100"/>
+		</div>
+		<div>
+			<label>The spot price of asset S2(0): </label>
+			<input name='S2' type='text' value="100"/>
+		</div>
+		<div>
+			<label>Strike price K: </label>
+			<input name='K' type='text' value="100"/>
+		</div>
+		<div>
+			<label>Time to maturity (in years) T: </label>
+			<input name='T' type='text' value="3"/> 
+		</div>
+		<div>
+			<label>The volatility of asset1: </label>
+			<input name='var1' type='text' value="0.3"/> 
+		</div>
+		<div>
+			<label>The volatility of asset2: </label>
+			<input name='var2' type='text' value="0.3"/> 
+		</div>
+		<div>
+			<label>Risk-free interest rate r: </label>
+			<input name='r' type='text' value="0.05"/> 
+		</div>
+		<div>
+			<label>The correlation: </label>
+			<input name='p' type='text' value="0.5"/> 
+		</div>
+		<div>
+			<label>The number of paths: </label>
+			<input name='m' type='text' value="10000"/> 
+		</div>
+
+		<input type='submit' value='calculate' /> <!-- 这个是用来提交的按钮 -->
+		<div>
+			<div>
+				Call option is: <span class='call_result'></span> 
+				The 95% confidence interval is: <span class='call_interval'></span>
+			</div>
+			<div> 
+				Put option is: <span class='put_result'></span>
+				The 95% confidence interval is: <span class='put_interval'></span>
+			</div>
+		</div>
+	</form>
+
+
+	<h2>Monte Carlo method for arithmetic basket option. Control variate = Geometric mean Asian with adjusted strike.</h2>
+	<form class='controlAS_basket_from'>
+		<div>
+			<label>The spot price of asset S1(0): </label>
+			<input name='S1' type='text' value="100"/>
+		</div>
+		<div>
+			<label>The spot price of asset S2(0): </label>
+			<input name='S2' type='text' value="100"/>
+		</div>
+		<div>
+			<label>Strike price K: </label>
+			<input name='K' type='text' value="100"/>
+		</div>
+		<div>
+			<label>Time to maturity (in years) T: </label>
+			<input name='T' type='text' value="3"/> 
+		</div>
+		<div>
+			<label>The volatility of asset1: </label>
+			<input name='var1' type='text' value="0.3"/> 
+		</div>
+		<div>
+			<label>The volatility of asset2: </label>
+			<input name='var2' type='text' value="0.3"/> 
+		</div>
+		<div>
+			<label>Risk-free interest rate r: </label>
+			<input name='r' type='text' value="0.05"/> 
+		</div>
+		<div>
+			<label>The correlation: </label>
+			<input name='p' type='text' value="0.5"/> 
+		</div>
+		<div>
+			<label>The number of paths: </label>
+			<input name='m' type='text' value="10000"/> 
+		</div>
+
+		<input type='submit' value='calculate' /> <!-- 这个是用来提交的按钮 -->
+		<div>
+			<div>
+				Call option is: <span class='call_result'></span> 
+				The 95% confidence interval is: <span class='call_interval'></span>
+			</div>
+			<div> 
+				Put option is: <span class='put_result'></span>
+				The 95% confidence interval is: <span class='put_interval'></span>
+			</div>
+		</div>
+	</form>
+
+
+
 </body>
 </html>
