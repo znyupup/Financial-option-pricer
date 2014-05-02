@@ -3,7 +3,7 @@
 // var R  = R || {};
 // R.util = R.util || {};
 
-// var S = 120;
+// var S = 100;
 // var K = 100;
 // var T = 3;
 // var variance = 0.3;

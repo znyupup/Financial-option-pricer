@@ -7,7 +7,7 @@
 	/** 给出错的字段标红 **/
 	label{
 		display: inline-block;
-		width: 12em;
+		width: 15em;
 		text-align: right;
 	}
 	.error{
@@ -25,83 +25,8 @@
 	<script src="04_MCcontrol.js"></script>
 	<script src="05_controlBlasket.js"></script>
 	<script src="TestCase.js"></script>
+	<script src="main.js"></script>
 	<script type="text/javascript">
-
-$(function(){  //所有代码放到这个block里面来，这样页面加载好之后才执行js
-
-
-	var BS_euro = function(e){ //定义点击按钮之后调用的函数
-
-		var $form = $('form.BS_European');  //选中表单这个元素
-		var get = function(name){
-			return $form.find('input[name="'+name+'"]').val();
-		}
-
-		var S = get('S');
-		var K = get('K');
-		var T = get('T');
-		var variance = get('variance');
-		var r = get('r');
-		var t = get('t');
-
-		var callvalue = R.euro.callOption(S, K, t, T, variance, r);  //获得这个input的值
-		var putvalue = R.euro.putOption(S, K, t, T, variance, r);
-
-		$form.find('span.call_result').text(callvalue);
-		$form.find('span.put_result').text(putvalue);
-
-		return false; //让表单不提交，而是执行上面的代码。
-	}
-
-	var main_rule = {
-		required: true,
-		number: true,
-		min: 0
-	};
-
-	var main_message = {
-		required: 'needed',
-		number: 'number',
-		min: 'This should be positive'
-	};
-
-	var dec_rule = {
-		required: true,
-		number: true,
-		range: [0, 1]
-	};
-
-	var dec_message = {
-		required: 'needed',
-		number: 'number',
-		range: 'This should between 0 and 1'
-	};
-
-	var BS_euro_option = {
-		rules:{
-			S: main_rule,
-			K: main_rule,
-			T: main_rule
-			variance:dec_rule,
-			r:dec_rule,
-			t: main_rule
-		},
-
-		messages:{
-			S: main_message,
-			K: main_message,
-			T: main_message,
-			variance: dec_message,
-			r: dec_message,
-			t: main_rule
-		},
-
-		submitHandler: BS_euro 
-	};
-
-	$('form.BS_European').validate(BS_euro_option); 
-
-})
 
 </script>
 
@@ -109,8 +34,8 @@ $(function(){  //所有代码放到这个block里面来，这样页面加载好�
 </head>
 <body>
 
-	<h1>Black-Scholes Formulas for European call/put options.</h1>
-	<form class='BS_European'>
+	<h2>Black-Scholes Formulas for European call/put options.</h2>
+	<form class='BS_Euro_form'>
 		<div>
 			<label>The spot price of asset S(0): </label>
 			<input name='S' type='text' value="100"/>
@@ -134,6 +59,84 @@ $(function(){  //所有代码放到这个block里面来，这样页面加载好�
 		<div>
 			<label>t: </label>
 			<input name='t' type='text' value="0"/> 
+		</div>
+
+		<input type='submit' value='calculate' /> <!-- 这个是用来提交的按钮 -->
+		<div>
+			Call option is: <span class='call_result'></span> &nbsp; &nbsp;
+			Put option is: <span class='put_result'></span>
+		</div>
+	</form>
+
+
+	<h2>Close-form formulas for geometric Asian option.</h2>
+	<form class='geo_Asian_from'>
+		<div>
+			<label>The spot price of asset S(0): </label>
+			<input name='S' type='text' value="100"/>
+		</div>
+		<div>
+			<label>Strike price K: </label>
+			<input name='K' type='text' value="100"/>
+		</div>
+		<div>
+			<label>Time to maturity (in years) T: </label>
+			<input name='T' type='text' value="3"/> 
+		</div>
+		<div>
+			<label>The volatility: </label>
+			<input name='variance' type='text' value="0.3"/> 
+		</div>
+		<div>
+			<label>Risk-free interest rate r: </label>
+			<input name='r' type='text' value="0.05"/> 
+		</div>
+		<div>
+			<label>The number of observation times: </label>
+			<input name='n' type='text' value="50"/> 
+		</div>
+
+		<input type='submit' value='calculate' /> <!-- 这个是用来提交的按钮 -->
+		<div>
+			Call option is: <span class='call_result'></span> &nbsp; &nbsp;
+			Put option is: <span class='put_result'></span>
+		</div>
+	</form>
+
+
+	<h2>Close-form formulas for geometric basket options.</h2>
+	<form class='geo_basket_from'>
+		<div>
+			<label>The spot price of asset S1(0): </label>
+			<input name='S1' type='text' value="100"/>
+		</div>
+		<div>
+			<label>The spot price of asset S2(0): </label>
+			<input name='S2' type='text' value="100"/>
+		</div>
+		<div>
+			<label>Strike price K: </label>
+			<input name='K' type='text' value="100"/>
+		</div>
+		<div>
+			<label>Time to maturity (in years) T: </label>
+			<input name='T' type='text' value="3"/> 
+		</div>
+		<div>
+			<label>The volatility of asset1: </label>
+			<input name='var1' type='text' value="0.3"/> 
+		</div>
+		<div>
+			<label>The volatility of asset2: </label>
+			<input name='var2' type='text' value="0.3"/> 
+		</div>
+		<div>
+			<label>Risk-free interest rate r: </label>
+			<input name='r' type='text' value="0.05"/> 
+		</div>
+		<div>
+			<label>The correlation: </label>
+			<input name='p' type='text' value="0.5"/> 
 		</div>
 
 		<input type='submit' value='calculate' /> <!-- 这个是用来提交的按钮 -->

@@ -9,6 +9,7 @@ R.geo.Asian = (function(){
 
 	function callOption (S, K, n, T, variance, r){
 
+		//console.log(S, K, n, T, variance, r);
 		var a, u;
 		a = variance*Math.sqrt((n+1)*(2*n+1)/(6*n*n));
 		u = (r-0.5*variance*variance)*((n+1)/(2*n))+0.5*a*a;
